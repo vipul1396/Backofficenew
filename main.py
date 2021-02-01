@@ -1,3 +1,4 @@
+
 @app.route('/adddata', methods=['POST'])
 def add_score():
     cursor = db.cursor()
@@ -13,3 +14,15 @@ def add_score():
                    (ad_source, client_name, client_code, company_code, company_name, company_mail))
     db.commit()
     return jsonify(customers='Mapping Updated')
+
+@app.route('/get_company_data', methods=['POST'])
+def company_data():
+    company_name = request.form['company_name']
+    cursor1 = db1.cursor()
+    query_string = "SELECT companyCode,email FROM contact_list_vw WHERE CompanyName = %s"
+    cursor1.execute(query_string, (company_name,))
+    results1 = cursor1.fetchall()
+    cursor1.close()
+    print(results1)
+    return jsonify(customers=results1)
+
