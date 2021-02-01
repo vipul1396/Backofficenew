@@ -66,8 +66,13 @@ def company_data():
 
 @app.route('/view', methods=['GET'])
 def index():
+    print("Hi")
     return render_template('index_copy.html')
 
+
+@app.route('/view', methods=['GET'])
+def vipul():
+    return render_template('vipul.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
