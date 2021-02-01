@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+     <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+* {
+ box-sizing: border-box;
+}
+
+.dropbtn {
+     background-color:#e1e1e1;
+     color: black;
+     padding: 10px;
+     font-size: 12px;
+     border: none;
+     cursor: pointer;
+}
+
+.dropdown {
+     position: relative;
+     display: inline-block;
+}
+
+.dropdown-content {
+     display: none;
+     position: absolute;
+     background-color: #f6f6f6;
+     min-width: 230px;
+     overflow: auto;
+     border: 1px solid #ddd;
+     z-index: 1;
+     max-height: 400px;
+}
+
+.dropdown-content a {
+     color: black;
+     padding: 12px 16px;
+     text-decoration: none;
+     display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block !important;}
+
+#myInput {
+     background-position: 10px 10px;
+     background-repeat: no-repeat;
+     width: 100%;
+     font-size: 16px;
+     padding: 12px 20px 12px 40px;
+     border: 1px solid #ddd;
+     margin-bottom: 12px;
+}
+
+#myTable {
+     border-collapse: collapse;
+     width: 100%;
+     border: 1px solid #ddd;
+     font-size: 18px;
+}
+
+#myTable th, #myTable td {
+     text-align: left;
+     padding: 12px;
+}
+
+#myTable tr {
+     border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+     background-color: #f1f1f1;
+}
+
+#myInput1 {
+     box-sizing: border-box;
+     background-image: url('searchicon.png');
+     background-position: 14px 12px;
+     background-repeat: no-repeat;
+     font-size: 16px;
+     padding: 14px 20px 12px 45px;
+     border: none;
+     border-bottom: 1px solid #ddd;
+}
+
+pagination li:hover{
+    cursor: pointer;
+}
+
+
+#myInput1:focus {outline: 3px solid #ddd;}
+</style>
+  </head>
+     <body>
+        <h2>Company's Information</h2>
+        <table id="myTable">
+        <tr class="header">
+            <th style="width:7.69%;">AdminCode</th>
+            <th style="width:7.69%;">AdminName</th>
+            <th style="width:7.69%;">Phone</th>
+            <th style="width:7.69%;">CompanyName</th>
+            <th style="width:7.69%;">CompanyCode</th>
+            <th style="width:7.69%;">Email</th>
+            <th style="width:7.69%;">ContactName</th>
+            <th style="width:7.69%;">QueryNumber</th>
+            <th style="width:7.69%;">CompanyStatus</th>
+            <th style="width:7.69%;">NumberOfActiveJobs</th>
+            <th style="width:7.69%;">Credit</th>
+            <th style="width:7.69%;">ExpiredDate</th>
+            <th style="width:7.69%;"></th>
+        </tr>
+            {% for var in view1_contact_list %}
+        <tr>
+            <td>{{ var[0] }}</td>
+            <td>{{ var[1] }}</td>
+            <td>{{ var[2] }}</td>
+            <td>
+                <div class="dropdown">
+                    <button class="dropbtn">Company Name <i class="fa fa-caret-down" aria-hidden="true"></i></button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                        {% for data in view2_Company_list %}
+                        <a class="data_vlaue" data="{{data[0]}}">{{data[0]}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </td>
+
+            <td class="company_code"></td>
+            <td class="company_email"></td>
+            <td>{{ var[0] }}</td>
+            <td>{{ var[0] }}</td>
+	    <td>{{ var[0] }}</td>
+            <td>{{ var[0] }}</td>
+            <td>{{ var[0] }}</td>
+            <td>{{ var[0] }}</td>
+            <td>
+                <button type="button" value="Update Map" class="update_submit">Update Map</button>
+            </td>
+        </tr>
+        {% endfor %}
+      </table>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    $( document ).ready(function() {
+
+         $('.dropbtn').click(function(){
+            $(this).siblings('#myDropdown').toggleClass('show');
+        })
+        $(document).on('click','.data_vlaue',function(){
+            var data_val =  $(this).attr('data');
+            var $this = $(this);
+            var parent_tr = $(this).parents('tr');
+            $(this).parents('td').html(data_val);
+            $.ajax({
+                url: "/get_company_data",
+                context: this,
+                type: "POST",
+                 data: {
+                     company_name: data_val,
+                 },
+                success: function(response) {
+                    parent_tr.find('.company_code').html(response.customers[0][0]);
+                    parent_tr.find('.company_email').html(response.customers[0][1]);
+                    localStorage.setItem('company_detail',JSON.stringify(response))
+                    window.location.href = "http://127.0.0.1:5000/view";
+            },
+        });
+        })
+         $('.update_submit').click(function(){
+            var data_set =[];
+            $(this).parents('tr').children('td').each(function(){
+                data_set.push($(this).html());
+             });
+             $.ajax({
+                type: 'POST',
+                data: {
+                     ad_source: data_set[0],
+                     client_name: data_set[1],
+                     client_code: data_set[2],
+                     company_code: data_set[4],
+                     company_name: data_set[3],
+                     company_mail: data_set[5],
+                 },
+                // OR
+                // data: data, // if you use the form serialization above
+                url: "/adddata",
+                 success: function(response) {
+                   alert(response.customers);
+            },
+                 error: 'showError',
+            });
+        })
+         });
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+def someName():
+    cursor = db.cursor()
+    sql = "SHOW columns FROM all_deltas_combined_vw"
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    print(results) 
+    exit()
+
+(('ad_source', 'varchar(255)', 'YES', '', None, ''), ('client_name', 'varchar(255)', 'YES', '', None, ''), ('client_code', 'varchar(255)', 'YES', '', None, ''))
+
+def someName():
+    cursor1 = db1.cursor()
+    sql1 = "SHOW columns FROM contact_list_vw"
+    cursor1.execute(sql1)
+    results1 = cursor1.fetchall()
+    print(results1) 
+    exit()
+
+(('companyCode', 'varchar(255)', 'YES', '', None, ''), ('CompanyName', 'varchar(255)', 'YES', '', None, ''), ('email', 'varchar(255)', 'YES', '', None, ''))
+
+db = pymysql.connect("172.104.10.87", "web_map1", "sfgfgkj54@$8sAb", "linkedin")
+(('all_deltas_combined_vw',), ('mapping_clients',))
+db1 = pymysql.connect("172.104.10.87", "web_map1", "sfgfgkj54@$8sAb", "alljobs")
+(('contact_list_vw',),)
+
+def someName():
+    cursor = db.cursor()
+    cursor1 = db1.cursor()
+    sql = "SHOW TABLES"
+    sql1 = "SHOW TABLES"
+    cursor.execute(sql)
+    cursor1.execute(sql1)
+    for x in cursor:
+        print(x)
+    for y in cursor1:
+        print(y)
+
+('all_deltas_combined_vw',)
+('mapping_clients',)
+('contact_list_vw',)
+
+
+
+('ad_source', 'varchar(255)', 'YES', '', None, ''), ('client_name', 'varchar(255)', 'YES', '', None, ''), ('client_code', 'varchar(255)', 'YES', '', None, '')
+('companyCode', 'varchar(255)', 'YES', '', None, ''), ('CompanyName', 'varchar(255)', 'YES', '', None, ''), ('email', 'varchar(255)', 'YES', '', None, ''), ('CompanyStatus', 'varchar(255)', 'YES', '', None, ''), ('NumberOfActiveJobs', 'varchar(255)', 'YES', '', None, '')
+
+
+
+
+
+
+
+
+
+

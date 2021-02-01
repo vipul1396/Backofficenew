@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+      <title>Json Format</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+       <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    
+ <b>ResultList:[{'ClientCode': <p id="code"></p>, 'Email': <p id="email"></p>, 'CompanyName': <p id="companyname"></p> }]</b>
+ <p id="ad_source"></p>
+
+
+<script>
+     $( document ).ready(function() {
+      let res = JSON.parse(localStorage.getItem('company_detail'));
+      $("#code").html("<b>"+res.customers[0][0]+"</b>");
+      $("#email").html("<b>"+res.customers[0][2]+"</b>"); 
+      $("#companyname").html("<b>"+res.customers[0][1]+"</b>");
+      $("#ad_source").html("<b>"+res.customers[0][1]+"</b>");
+     }
+     );
+</script>
+
+</body>
+</html>
+
