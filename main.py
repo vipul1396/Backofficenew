@@ -8,8 +8,11 @@ def add_score():
     print("hi")
     ad_source = request.form['ad_source']
     client_name = request.form['client_name']
+    print("hi")
     client_code = request.form['client_code']
+    print("hi")
     company_code = request.form['company_code']
+    print("hi")
     company_name = request.form['company_name']
     company_mail = request.form['company_mail']
 
@@ -23,6 +26,7 @@ def add_score():
 def company_data():
     company_name = request.form['company_name']
     cursor1 = db1.cursor()
+    print("hi")
     query_string = "SELECT companyCode,email FROM contact_list_vw WHERE CompanyName = %s"
     cursor1.execute(query_string, (company_name,))
     results1 = cursor1.fetchall()
