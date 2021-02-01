@@ -22,6 +22,7 @@ def someName():
     sql = "SELECT * FROM all_deltas_combined_vw limit 30"
     #sql2 = "SELECT * FROM mapping_clients"
     sql1 = "SELECT CompanyName FROM contact_list_vw" 
+	sql1 = "SELECT CompanyName FROM contact_list_vw 1"
     cursor.execute(sql)
     cursor1.execute(sql1)
     #cursor2.execute(sql2) 
@@ -68,6 +69,10 @@ def company_data():
 def index():
     print("Hi")
     return render_template('index_copy.html')
+
+@app.route('/view', methods=['GET'])
+def vipul():
+    return render_template('vipul.html')
 
 
 @app.route('/view', methods=['GET'])
