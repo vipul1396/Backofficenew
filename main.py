@@ -6,6 +6,7 @@ from flask_mysqldb import MySQL
 def add_score():
     cursor = db.cursor()
     print("hi")
+    print("ajooba")
     ad_source = request.form['ad_source']
     client_name = request.form['client_name']
     print("hi")
