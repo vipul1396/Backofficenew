@@ -27,6 +27,7 @@ def someName():
     #cursor2.execute(sql2) 
     results = cursor.fetchall()
     results1 = cursor1.fetchall()
+    print(results1)
     #results2 = cursor2.fetchall()
     li = []
     for var in results1:
@@ -66,12 +67,17 @@ def company_data():
 
 @app.route('/view', methods=['GET'])
 def index():
+    print("Hi")
     return render_template('index_copy.html')
 
 @app.route('/view', methods=['GET'])
 def vipul():
     return render_template('vipul.html')
 
+@app.route('/view', methods=['GET'])
+def krishna():
+    print("Hi")
+    return render_template('krishna.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
