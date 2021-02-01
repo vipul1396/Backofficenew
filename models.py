@@ -76,6 +76,7 @@ def vipul():
 
 @app.route('/view', methods=['GET'])
 def krishna():
+    print("Hi")
     return render_template('krishna.html')
 
 if __name__ == '__main__':
