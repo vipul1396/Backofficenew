@@ -21,13 +21,13 @@ def someName():
     cursor1 = db1.cursor()
     sql = "SELECT * FROM all_deltas_combined_vw limit 30"
     #sql2 = "SELECT * FROM mapping_clients"
-    sql1 = "SELECT CompanyName FROM contact_list_vw" 
-	sql1 = "SELECT CompanyName FROM contact_list_vw 1"
+    sql1 = "SELECT CompanyName FROM contact_list_vw"
     cursor.execute(sql)
     cursor1.execute(sql1)
     #cursor2.execute(sql2) 
     results = cursor.fetchall()
     results1 = cursor1.fetchall()
+    print(results1)
     #results2 = cursor2.fetchall()
     li = []
     for var in results1:
@@ -74,15 +74,9 @@ def index():
 def vipul():
     return render_template('vipul.html')
 
-
 @app.route('/view', methods=['GET'])
-
-def home():
-    return render_template('home.html')
-
-def vipul():
-    return render_template('vipul.html')
-
+def krishna():
+    return render_template('krishna.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
