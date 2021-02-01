@@ -22,6 +22,7 @@ def someName():
     sql = "SELECT * FROM all_deltas_combined_vw limit 30"
     #sql2 = "SELECT * FROM mapping_clients"
     sql1 = "SELECT CompanyName FROM contact_list_vw" 
+	sql1 = "SELECT CompanyName FROM contact_list_vw 1"
     cursor.execute(sql)
     cursor1.execute(sql1)
     #cursor2.execute(sql2) 
